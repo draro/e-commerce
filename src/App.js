@@ -44,26 +44,16 @@ class App extends React.Component {
         this.unsubscribefromAuth()
     }
     render() {
-        return ( <
-            div className = 'App' >
-            <
-            Header currentUser = { this.state.currentUser }
-            />
+        return ( 
+        <div className = 'App'>
+            <Header currentUser = { this.state.currentUser }/>
 
-            <
-            Switch >
-            <
-            Route exact path = '/'
-            component = { HomePage }
-            /> <
-            Route path = '/shop'
-            component = { ShopPage }
-            /> <
-            Route path = '/signin'
-            component = { SignInAndSignUp }
-            /> < /
-            Switch > <
-            /div>
+            <Switch>
+                <Route exact path = '/' component = { HomePage }/> 
+                <Route path = '/shop' component = { ShopPage }/> 
+                <Route path = '/signin' component = { SignInAndSignUp }/> 
+            </Switch> 
+        </div>
         );
     }
 }
