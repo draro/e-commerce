@@ -2,10 +2,12 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import './header.style.scss'
 import {auth} from '../../firebase/firebase.utils'
+import CartIcon from '../cart-icon/cart-icon.component'
+import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 // REDUX
 import {connect} from 'react-redux'
 
-const Header = ({currentUser}) => (
+const Header = ({currentUser, hidden}) => (
     <div className='header'>
         <Link to='/' className='logo-container'>
             <img src='https://genius-face.herokuapp.com/static/media/Logo.1330fb23.png' style={{width: 70, height: 70}} alt="me" className='logo'/>
@@ -19,12 +21,17 @@ const Header = ({currentUser}) => (
             :
            ( <Link className='option' to='/signin'>SIGN IN</Link>)
         }
+        <CartIcon />
         </div>
-    </div>
+        {
+            hidden ? null : (
+        <CartDropdown />)
+}    </div>
 )
 
-const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser
+const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({
+    currentUser,
+    hidden
 })
 
 export default connect(mapStateToProps)(Header)
